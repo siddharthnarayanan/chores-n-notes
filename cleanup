@@ -1,0 +1,66 @@
+1213083146
+
+Item
+
+CVVariant
+
+select contractid from (select CONTRACTID from (select CONTRACTID,count(*) from MST_CONTRACTLINEITEMPRICE having count(*) >1 group by CONTRACTID,ITEMID,EFF_START_DATE,EFF_END_DATE,PRICETYPE,CURRENCY));
+
+call Check-Contracts.bat 5301542546 2013 11 01
+
+MDM_Stats
+
+0622CTO
+
+cd C:\Documents and Settings\j1016782\Desktop\Scripts
+
+Check-Contracts.bat 01 01 2014
+
+Check-Contracts.bat 5301484546 2013 12 20
+
+5301502497
+5301502622
+
+select contractid,itemid,EFF_start_DATE,EFF_END_DATE from mst_contractlineitemprice where sys_ENT_STATE='ACTIVE' and EFF_END_DATE < SYSDATE-30 and contractid not in (select contractid from mst_contractheader where sys_ENT_STATE='ACTIVE' and EFF_END_DATE < SYSDATE-30);
+
+select b.contractid,b.itemid,b.EFF_start_DATE,b.EFF_END_DATE,b.sys_ent_state,a.EFF_start_DATE as EFF_start_DATE_lineitem,a.EFF_END_DATE as EFF_end_DATE_lineitem,a.sys_ent_state as state_lineitem from mst_contractlineitem a,mst_contractlineitemprice b where a.contractid=b.contractid and a.itemid=b.itemid and a.contractlineid=b.contractlineid and a.EFF_END_DATE <> b.EFF_END_DATE and a.sys_ent_state='ACTIVE';
+
+
+US_Public_MTMExports.xml
+AP_Public_MTMS_Export.xml
+
+getoutletMTMfeatureAttributeXml
+
+select distinct item_id from mst_ipc_offering_country_data where item_id not in (select distinct item_id from mst_ipc_offering_country_data where cty_wddate>sysdate-90 and sys_ent_state='ACTIVE') and sys_ent_state = 'ACTIVE';
+
+
+select distinct item_id from 
+mst_ipc_offering_country_data 
+where item_id not in (select 
+distinct item_id from 
+mst_ipc_offering_country_data 
+where cty_wddate>sysdate-90 and 
+sys_ent_state='ACTIVE') and 
+sys_ent_state = 'ACTIVE';
+
+select cty_wddate from (select item_id,cty_wddate,country from mst_ipc_offering_country_data where item_id in (select distinct item_id from mst_ipc_offering_country_data where item_id not in (select distinct item_id from mst_ipc_offering_country_data where cty_wddate>sysdate-90 and sys_ent_state='ACTIVE') and sys_ent_state = 'ACTIVE')) where cty_wddate > sysdate-90;
+
+SD#88315 CleanUp: LastModifiedOn 17-JAN-13 06.40.09.697000 PM
+
+select * from RESTORE_USER.mst_item_desc where item_desc_id in (select distinct item_id from RESTORE_USER.mst_itemorganization where sys_ent_state = 'ACTIVE' and item_class in ('SBB','ZPPN')) and sys_ent_state = 'ACTIVE' ;
+
+select a.item_id,a.organization_id,a.sys_ent_state,a.sys_last_modified_by,a.sys_last_modified_date from mst_item_avail a where a.organization_id = 'AT10' and not exists (select b.item_id,b.org_id from mst_itemorganization b where a.item_id=b.item_id and a.organization_id =b.org_id);
+
+select count (*) from mst_item_avail a where a.organization_id = 'BR10' and not exists (select b.item_id,b.org_id from mst_itemorganization b where a.item_id=b.item_id and a.organization_id =b.org_id);
+
+update mst_item_avail a set a.sys_ent_state = 'DELETED',a.sys_last_modified_by =  'SD#87931 Data Cleanup' where a.organization_id = 'AT10' and a.sys_ent_state = 'ACTIVE' and not exists (select b.item_id, b.org_id from mst_itemorganization b where a.item_id=b.item_id and a.organization_id=b.org_id);
+
+select count (*) from mst_item_avail where sys_last_modified_by = 'SD#87931 Data Cleanup' and organization_id = 'AT10' and sys_ent_state = 'DELETED';
+
+select count (*) from mst_item_avail where organization_id = 'AT10' and sys_last_modified_by = 'SD#87931 Data Cleanup' and sys_ent_state = 'ACTIVE';
+
+select item_desc_id,sys_ent_state,sys_last_modified_date,sys_last_modified_by from mst_item_desc where REGEXP_LIKE (item_desc_id,'^[0-9]') and item_desc_id in (select distinct item_id from mst_itemorganization where sys_ent_state = 'ACTIVE' and item_class in ('SBB','ZPPN')) and sys_ent_state = 'ACTIVE' ORDER BY item_desc_id DESC;
+
+select count(*) from mst_item_desc where REGEXP_LIKE (item_desc_id,'^[0-9]') and item_desc_id in (select distinct item_id from mst_itemorganization where sys_ent_state = 'ACTIVE' and item_class in ('SBB','ZPPN')) and sys_ent_state = 'ACTIVE' ORDER BY item_desc_id DESC;
+
+select count(*) from mst_item_desc where item_desc_id like '9%' and item_desc_id in (select distinct item_id from mst_itemorganization where sys_ent_state = 'ACTIVE' and item_class in ('SBB','ZPPN')) and sys_ent_state = 'ACTIVE' ORDER BY item_desc_id DESC;
