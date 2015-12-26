@@ -1,0 +1,8 @@
+@echo off
+cls
+setlocal EnableDelayedExpansion
+set "cmd=findstr /R /N "^^" D:\Siddahrth\Cnet_ItemData_LOIS_CA_20130710.txt | find /C ":""
+
+for /f %%a in ('!cmd!') do set number=%%a
+set /a "code=%number%-2"
+
