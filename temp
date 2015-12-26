@@ -1,0 +1,15 @@
+@echo on
+setLocal EnableDelayedExpansion 
+set /a value=0 
+set /a sum=0 
+SET /A COUNT=0
+D:
+FOR /R %1 %%I IN (ZCRMXIF_ORDER*.xml Options*.xml MTM*.xml) DO ( 
+set /a value=%%~zI/1024 
+set /a sum=!sum!+!value! 
+SET /A COUNT+=1
+  )
+@echo Count is: !COUNT!
+set /a sum=!sum!/1024
+@echo Size is: !sum! mb
+pause
