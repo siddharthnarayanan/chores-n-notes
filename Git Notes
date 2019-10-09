@@ -1,0 +1,15 @@
+FOR BRANCH:
+
+mkdir $BRANCH on local
+cd $BRANCH on local
+git init
+git remote add -t $BRANCH -f origin $REMOTE_REPO  # git remote add -t Siddharth -f origin http://10.246.59.21/PNC_POT/POT.git
+git checkout $BRANCH 
+_____________________
+
+git pull
+_____________________
+
+git add .
+git commit -m "comment"
+git push -u origin <branch>
