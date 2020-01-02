@@ -16,4 +16,4 @@ git push -u origin <branch>
 
 _______________________
 
-git resetorigin
+git reset
