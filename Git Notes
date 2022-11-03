@@ -1,3 +1,48 @@
+
+-------------------------------------------------------------------------------------------------------------------------------------
+V1
+
+FOR BRANCH:
+
+mkdir $BRANCH on local
+cd $BRANCH on local
+git init
+$ git checkout -b <branch-name>
+
+_____________________
+
+git pull
+_____________________
+
+git add .
+git commit -m "comment"
+git push -u origin <branch>
+
+_______________________
+
+Delete the current one
+git remote rm origin
+
+Add the git remote link ex: (https://user@bitbucket.org/test.git or https://github.com/user/test.git)
+git remote add origin link
+
+git pull origin master (or other branch)
+
+If you are trying to pull you app from heroku
+git pull heroku master
+
+
+Or if you try to upload a new version to heroku
+git push heroku master
+
+
+
+https://stackoverflow.com/questions/24451868/git-pull-error-fatal-couldnt-find-remote-ref-master-from-heroku
+https://www.git-tower.com/learn/git/faq/git-create-remote-branch
+
+------------------------------------------------------------------------------------------------------------------------------------------
+V2
+
 FOR BRANCH:
 
 mkdir $BRANCH on local
